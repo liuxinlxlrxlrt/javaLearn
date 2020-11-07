@@ -1,0 +1,46 @@
+public interface Iterable {
+	//接口的默认修饰符pubilc abstract(省略)+boolean hasNext()/(Object next();); 
+	boolean hasNext();
+    Object next();
+}
+//Iterable接口中有一个方法 iterator()
+//iterator()返回Iterator
+//Iterator本身是一个接口，定义了三个方式：hasNext(),next(),remove()(目前不用这个remove方法);
+public interface Iterable {
+	//编译看左边Iterator，运行看右边iterator(); 
+    Iterator iterator(); 
+}
+//Collection接口 继承 Iterable接口
+public interface Collection extends Iterable{
+	Iterator iterator(); 
+}
+//List接口 继承 Collection接口
+public interface List extends Collection{
+	Iterator iterator(); 
+}
+//具体类ArrayList实现List接口，
+//Itr();是ArrayList接口的实现类,因为返回值是接口，里面的new对象肯定是实现类
+public class ArrayList implements Lsit{
+	public Iterator iterator() {
+            return new Itr();
+        }
+    //内部的类实现了Iterator接口
+    private class Itr implements Iterator{
+       	public  boolean hasNext(){}
+    	public  Object next(){}
+    }
+}
+1.//创建集合对象
+Collection c = new ArrayList();
+2.//调用add方法添加三个元素
+c.add("hello");
+c.add("world");
+c.add("java");
+3.////编译看左边Iterator，运行看右边iterator(); 	   
+Iterator it = c.iterator();//真是的是返回的是new Itr();对象
+
+while(it.hasNext()){//用的是Itr();中的hasNext
+	String s = (String)it.next();//用的是Itr();中的next
+	System.out.printIn(s);
+}
+ 

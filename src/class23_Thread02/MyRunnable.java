@@ -1,0 +1,14 @@
+package class23_Thread02;
+
+
+public class MyRunnable implements Runnable {
+		@Override
+		public void run() {
+			for(int x=0;x<100;x++) {
+				//由于实现接口的方式就不能直接使用Thread类的方法了，但是可以间接的使用，
+				//通过Thread.currentThread()获取线程当前对形象
+				System.out.println(Thread.currentThread().getName()+":"+x);
+			}
+			
+		}
+}
